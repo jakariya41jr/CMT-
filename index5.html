@@ -1,0 +1,1292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CMT - Global Welding Engineering Institute</title>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Orbitron:wght@400;600;800;900&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* Modern CSS Architecture & Variables */
+        :root {
+            --bg-deep: #030712;
+            --bg-surface: #0b1329;
+            --bg-card: rgba(11, 19, 41, 0.65);
+            --cyber-blue: #00f3ff;
+            --plasma-orange: #ff6b00;
+            --electric-amber: #ffaa00;
+            --text-pure: #ffffff;
+            --text-sub: #94a3b8;
+            --text-bengali: #cbd5e1;
+            --glow-blue: 0 0 20px rgba(0, 243, 255, 0.4);
+            --glow-orange: 0 0 20px rgba(255, 107, 0, 0.4);
+            --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Reset & Base System */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            outline: none;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-deep);
+            color: var(--text-pure);
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
+
+        .bn {
+            font-family: 'Hind Siliguri', sans-serif;
+            color: var(--text-bengali);
+            display: block;
+            font-size: 0.95rem;
+            margin-top: 6px;
+            font-weight: 400;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-deep);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(to bottom, var(--cyber-blue), var(--plasma-orange));
+            border-radius: 10px;
+        }
+
+        /* Glassmorphic Header & Futuristic Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.2rem 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(3, 7, 18, 0.75);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 243, 255, 0.15);
+            z-index: 1000;
+            transition: var(--transition-smooth);
+        }
+
+        header.scrolled {
+            padding: 0.8rem 6%;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border-bottom: 1px solid rgba(255, 107, 0, 0.2);
+        }
+
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--text-pure);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            letter-spacing: 2px;
+            text-shadow: var(--glow-blue);
+        }
+
+        .logo i {
+            color: var(--plasma-orange);
+            animation: pulseGlow 1.5s infinite alternate;
+        }
+
+        @keyframes pulseGlow {
+            0% { transform: scale(1); filter: drop-shadow(0 0 2px var(--plasma-orange)); }
+            100% { transform: scale(1.1); filter: drop-shadow(0 0 12px var(--plasma-orange)); }
+        }
+
+        .menu-toggle-btn {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            border-radius: 12px;
+            color: var(--cyber-blue);
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1002;
+            transition: var(--transition-smooth);
+        }
+
+        .menu-toggle-btn:hover {
+            border-color: var(--plasma-orange);
+            color: var(--plasma-orange);
+            box-shadow: var(--glow-orange);
+            transform: rotate(90deg);
+        }
+
+        /* Cyberpunk Side Slide Menu Overlay */
+        .cyber-nav-overlay {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 400px;
+            height: 100vh;
+            background: rgba(11, 19, 41, 0.98);
+            backdrop-filter: blur(25px);
+            border-left: 2px solid var(--cyber-blue);
+            box-shadow: -10px 0 40px rgba(0,0,0,0.8);
+            display: flex;
+            flex-direction: column;
+            padding: 100px 50px;
+            z-index: 1001;
+            transition: all 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+
+        .cyber-nav-overlay.open {
+            right: 0;
+        }
+
+        .cyber-nav-overlay a {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.4rem;
+            color: var(--text-pure);
+            text-decoration: none;
+            font-weight: 600;
+            margin: 20px 0;
+            display: flex;
+            flex-direction: column;
+            transition: var(--transition-smooth);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding-bottom: 10px;
+        }
+
+        .cyber-nav-overlay a .bn {
+            font-size: 0.9rem;
+            color: var(--plasma-orange);
+        }
+
+        .cyber-nav-overlay a:hover {
+            color: var(--cyber-blue);
+            padding-left: 15px;
+            text-shadow: var(--glow-blue);
+            border-bottom-color: var(--cyber-blue);
+        }
+
+        /* Giant Immersive Hero Architecture */
+        .hero-viewport {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 5%;
+            background: radial-gradient(circle at 50% 50%, #132247 0%, var(--bg-deep) 80%);
+            overflow: hidden;
+        }
+
+        /* Live Welding Arc Simulation Structure */
+        .plasma-welding-arc {
+            position: absolute;
+            top: 45%;
+            left: 50%;
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, rgba(0,243,255,0.25) 0%, rgba(255,107,0,0.05) 50%, transparent 70%);
+            transform: translate(-50%, -50%);
+            z-index: 1;
+            mix-blend-mode: screen;
+            animation: plasmaPulse 4s infinite alternate;
+        }
+
+        @keyframes plasmaPulse {
+            0% { transform: translate(-50%, -50%) scale(0.9); opacity: 0.4; }
+            50% { opacity: 0.8; background: radial-gradient(circle, rgba(255,255,255,0.4) 0%, rgba(0,243,255,0.3) 40%, transparent 70%); }
+            100% { transform: translate(-50%, -50%) scale(1.3); opacity: 0.6; }
+        }
+
+        .hero-canvas-sparks {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            max-width: 1100px;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(0, 243, 255, 0.08);
+            border: 1px solid var(--cyber-blue);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            box-shadow: var(--glow-blue);
+            margin-bottom: 25px;
+        }
+
+        .hero-badge .bn {
+            display: inline;
+            margin: 0;
+            color: var(--cyber-blue);
+            font-size: 0.9rem;
+        }
+
+        .hero-viewport h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 5.5rem);
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: -1px;
+            margin-bottom: 25px;
+        }
+
+        .hero-viewport h1 span {
+            background: linear-gradient(45deg, var(--cyber-blue), var(--plasma-orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-viewport h1 .bn {
+            font-family: 'Hind Siliguri', sans-serif;
+            font-size: clamp(1.4rem, 3vw, 2.8rem);
+            color: var(--text-pure);
+            font-weight: 700;
+            margin-top: 15px;
+            letter-spacing: 0;
+        }
+
+        .hero-viewport p {
+            font-size: 1.25rem;
+            color: var(--text-sub);
+            max-width: 850px;
+            margin: 0 auto 40px;
+        }
+
+        /* Global Structural Grid Layouts */
+        .section-padding { padding: 120px 6%; }
+        .container { max-width: 1400px; margin: 0 auto; }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title span { color: var(--plasma-orange); }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 25%;
+            width: 50%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--cyber-blue), transparent);
+        }
+
+        .section-title .bn {
+            font-family: 'Hind Siliguri', sans-serif;
+            font-size: 1.4rem;
+            color: var(--text-sub);
+            margin-top: 10px;
+        }
+
+        /* Multi-Grid Frameworks */
+        .grid-master-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 35px; }
+        .grid-master-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap: 45px; }
+        .grid-master-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+
+        /* Counter Statistics Section */
+        .stats-banner {
+            background: var(--bg-surface);
+            border-top: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding: 50px 5%;
+        }
+
+        .stat-box {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .stat-box h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: var(--cyber-blue);
+            text-shadow: var(--glow-blue);
+            margin-bottom: 5px;
+        }
+
+        /* Advanced Conic Neon Tracking Cards */
+        .cyber-glass-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            padding: 45px 35px;
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition-smooth);
+            z-index: 1;
+        }
+
+        .cyber-glass-card::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%; width: 200%; height: 200%;
+            background: conic-gradient(transparent, transparent, var(--cyber-blue), transparent);
+            animation: neonBorderTrack 6s linear infinite;
+            z-index: -2;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .cyber-glass-card::after {
+            content: '';
+            position: absolute;
+            inset: 2px;
+            background: #090f1e;
+            border-radius: 22px;
+            z-index: -1;
+        }
+
+        .cyber-glass-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            border-color: rgba(0, 243, 255, 0.3);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+        }
+
+        .cyber-glass-card:hover::before { opacity: 1; }
+
+        @keyframes neonBorderTrack {
+            100% { transform: rotate(360deg); }
+        }
+
+        .cyber-glass-card i {
+            font-size: 3.5rem;
+            color: var(--plasma-orange);
+            margin-bottom: 25px;
+            text-shadow: var(--glow-orange);
+        }
+
+        .cyber-glass-card h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .cyber-glass-card .tech-tag {
+            font-size: 0.85rem;
+            color: var(--cyber-blue);
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+
+        .cyber-glass-card p {
+            color: var(--text-sub);
+            font-size: 1rem;
+        }
+
+        /* Data Specifications Matrix Table Module */
+        .table-module-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            background: var(--bg-surface);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 20px;
+            margin-top: 50px;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.4);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            min-width: 700px;
+        }
+
+        th {
+            background: rgba(0, 243, 255, 0.08);
+            font-family: 'Orbitron', sans-serif;
+            color: var(--cyber-blue);
+            padding: 22px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            border-bottom: 2px solid rgba(0, 243, 255, 0.2);
+        }
+
+        td {
+            padding: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            color: var(--text-pure);
+        }
+
+        tr:hover {
+            background: rgba(255,255,255,0.01);
+        }
+
+        /* Badge Matrix Grid Pills */
+        .badge-pill-matrix {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        .pill-badge {
+            background: rgba(255, 107, 0, 0.1);
+            border: 1px solid rgba(255, 107, 0, 0.3);
+            color: var(--plasma-orange);
+            padding: 5px 14px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .pill-badge.blue-pill {
+            background: rgba(0, 243, 255, 0.1);
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            color: var(--cyber-blue);
+        }
+
+        /* HSE Cyber Protocol System Layout */
+        .hse-shield-section {
+            background: linear-gradient(180deg, var(--bg-deep) 0%, #060c1a 100%);
+        }
+
+        .hse-protocol-card {
+            background: rgba(0,0,0,0.4);
+            border: 1px solid rgba(255,255,255,0.03);
+            border-radius: 16px;
+            padding: 30px;
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            transition: var(--transition-smooth);
+        }
+
+        .hse-protocol-card:hover {
+            border-color: rgba(255, 71, 87, 0.3);
+            background: rgba(255, 71, 87, 0.02);
+            transform: scale(1.02);
+        }
+
+        .hse-icon-shield {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 71, 87, 0.1);
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.8rem;
+            color: #ff4757;
+            flex-shrink: 0;
+        }
+
+        /* Dynamic Interactive Accordion Setup */
+        .accordion-wrapper {
+            max-width: 900px;
+            margin: 50px auto 0;
+        }
+
+        .accordion-item {
+            background: var(--bg-surface);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 14px;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            padding: 22px;
+            font-weight: 600;
+            font-size: 1.15rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition-smooth);
+        }
+
+        .accordion-header:hover {
+            background: rgba(0, 243, 255, 0.03);
+            color: var(--cyber-blue);
+        }
+
+        .accordion-content {
+            padding: 0 22px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0, 1, 0, 1);
+            color: var(--text-sub);
+            border-top: 0 solid transparent;
+        }
+
+        .accordion-item.active .accordion-content {
+            padding: 22px;
+            max-height: 1000px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.4s cubic-bezier(1, 0, 1, 0);
+        }
+
+        .accordion-header i {
+            transition: var(--transition-smooth);
+        }
+
+        .accordion-item.active .accordion-header i {
+            transform: rotate(180deg);
+            color: var(--plasma-orange);
+        }
+
+        /* Glassmorphic Cyber Admission Form */
+        .form-container {
+            max-width: 800px;
+            margin: 60px auto 0;
+            background: rgba(11, 19, 41, 0.4);
+            border: 1px solid rgba(0, 243, 255, 0.1);
+            padding: 50px;
+            border-radius: 30px;
+            backdrop-filter: blur(20px);
+            box-shadow: inset 0 0 30px rgba(0, 243, 255, 0.05);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .input-group label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--cyber-blue);
+        }
+
+        .input-group input, .input-group select {
+            background: rgba(3, 7, 18, 0.6);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: 10px;
+            color: #fff;
+            font-family: inherit;
+            transition: var(--transition-smooth);
+        }
+
+        .input-group input:focus, .input-group select:focus {
+            border-color: var(--cyber-blue);
+            box-shadow: var(--glow-blue);
+        }
+
+        /* Action Buttons */
+        .action-cyber-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: linear-gradient(90deg, var(--plasma-orange), #ff8c00);
+            color: #fff;
+            padding: 16px 45px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            box-shadow: var(--glow-orange);
+            transition: var(--transition-smooth);
+        }
+
+        .action-cyber-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 0 35px rgba(255, 107, 0, 0.7);
+        }
+
+        /* Futuristic Massive Footer */
+        footer {
+            background: #02050d;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding: 90px 6px 30px;
+        }
+
+        .footer-grid-structure {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 50px;
+            max-width: 1400px;
+            margin: 0 auto 60px;
+            padding: 0 4%;
+        }
+
+        .footer-column h4 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.3rem;
+            color: var(--cyber-blue);
+            margin-bottom: 25px;
+            text-transform: uppercase;
+        }
+
+        .footer-column p { color: var(--text-sub); }
+
+        .footer-column ul { list-style: none; }
+        .footer-column ul li { margin-bottom: 12px; }
+        .footer-column ul li a {
+            color: var(--text-sub);
+            text-decoration: none;
+            transition: var(--transition-smooth);
+        }
+        .footer-column ul li a:hover {
+            color: var(--plasma-orange);
+            padding-left: 8px;
+        }
+
+        /* Developer Credit Master Widget - Dynamic Neon Glow Button */
+        .master-dev-credit-wrapper {
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding-top: 40px;
+            text-align: center;
+        }
+
+        .master-dev-glow-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 20px;
+            background: linear-gradient(135deg, #091326 0%, #0f203d 100%);
+            border: 2px solid var(--cyber-blue);
+            padding: 18px 45px;
+            border-radius: 100px;
+            text-decoration: none;
+            color: #fff;
+            box-shadow: 0 0 25px rgba(0, 243, 255, 0.25);
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .master-dev-glow-btn::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: 0.5s;
+        }
+
+        .master-dev-glow-btn:hover::before { left: 100%; }
+
+        .master-dev-glow-btn:hover {
+            transform: scale(1.05) translateY(-5px);
+            box-shadow: 0 0 40px rgba(0, 243, 255, 0.65), inset 0 0 15px rgba(0, 243, 255, 0.3);
+            border-color: #fff;
+        }
+
+        .master-dev-glow-btn i {
+            font-size: 2.2rem;
+            color: var(--plasma-orange);
+            animation: pulseGlow 1.2s infinite alternate;
+        }
+
+        .dev-text-container { text-align: left; }
+        .dev-text-container p { font-size: 0.75rem; color: var(--text-sub); letter-spacing: 2px; text-transform: uppercase; margin: 0; }
+        .dev-text-container h5 { font-size: 1.4rem; font-weight: 800; color: #fff; line-height: 1.2; }
+        .dev-text-container .bn { font-size: 0.85rem; color: var(--cyber-blue); margin: 0; }
+
+        /* Scroll Animation Target */
+        .reveal {
+            opacity: 0;
+            transform: translateY(60px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Absolute Responsive Layout System */
+        @media (max-width: 1200px) {
+            .footer-grid-structure { grid-template-columns: 1fr 1fr; gap: 40px; }
+        }
+
+        @media (max-width: 768px) {
+            .section-padding { padding: 80px 4%; }
+            .cyber-nav-overlay { width: 100%; }
+            .form-grid { grid-template-columns: 1fr; gap: 15px; }
+            .form-container { padding: 30px 20px; }
+            .footer-grid-structure { grid-template-columns: 1fr; gap: 35px; }
+            .master-dev-glow-btn { padding: 15px 25px; width: 100%; justify-content: center; }
+            .hse-protocol-card { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <header id="mainHeader">
+        <a href="#" class="logo">
+            <i class="fa-solid fa-bolt-lightning"></i> CMT
+        </a>
+        <button class="menu-toggle-btn" id="menuToggle" aria-label="Toggle Navigation">
+            <i class="fa-solid fa-bars-staggered" id="menuIcon"></i>
+        </button>
+    </header>
+
+    <nav class="cyber-nav-overlay" id="navMenu">
+        <a href="#home">Home <span class="bn">হোম ইন্টারফেস</span></a>
+        <a href="#global">Global Placements <span class="bn">গ্লোবাল ক্যারিয়ার</span></a>
+        <a href="#academic">Academic Modules <span class="bn">ওয়েল্ডিং কোর্সসমূহ</span></a>
+        <a href="#wps">WPS Specifications <span class="bn">ডিপার্টমেন্টাল ডাটাম্যাট্রিক্স</span></a>
+        <a href="#metrology">Metrology Lab <span class="bn">পরিমাপ ল্যাব টেস্ট</span></a>
+        <a href="#hse">HSE Protocols <span class="bn">নিরাপত্তা প্রোটোকল</span></a>
+        <a href="#apply">Apply Portal <span class="bn">অনলাইন ভর্তি গেটওয়ে</span></a>
+    </nav>
+
+    <section class="hero-viewport" id="home">
+        <div class="plasma-welding-arc"></div>
+        <canvas class="hero-canvas-sparks" id="sparkCanvas"></canvas>
+        <div class="hero-content">
+            <div class="hero-badge">
+                <i class="fa-solid fa-satellite-dish"></i> Next-Gen Industrial Tech <span class="bn">| আধুনিক টেকনোলজি</span>
+            </div>
+            <h1>Global Welding Engineering <span>Institute</span> <span class="bn">সেন্টার ফর মেরিন ট্রেনিং (CMT)</span></h1>
+            <p>
+                The ultimate premium multi-national hub for advanced high-amperage fusion welding tech. Certified job deployments spanning across Europe, Middle East, Asia and global maritime sectors.
+                <span class="bn">উন্নত মানের ফিউশন ওয়েল্ডিং প্রযুক্তির আন্তর্জাতিক ডিরেক্টরি। ইউরোপ, মিডল ইস্ট এবং এশিয়াসহ বিশ্বজুড়ে সার্টিফাইড স্মার্ট কর্মসংস্থান ও নিশ্চিত আবাসিক ইকোসিস্টেম।</span>
+            </p>
+            <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                <a href="#apply" class="action-cyber-btn"><i class="fa-solid fa-id-card"></i> Apply Portal / অনলাইন ভর্তি</a>
+                <a href="#academic" class="action-cyber-btn" style="background: rgba(255,255,255,0.05); border: 1px solid var(--cyber-blue); box-shadow: none;"><i class="fa-solid fa-book-open"></i> Courses / কোর্স মডিউল</a>
+            </div>
+        </div>
+    </section>
+
+    <div class="stats-banner">
+        <div class="container grid-master-4">
+            <div class="stat-box">
+                <h2 class="counter" data-target="8500">0</h2>
+                <p>Global Alumni <span class="bn">সফল গ্র্যাজুয়েট</span></p>
+            </div>
+            <div class="stat-box">
+                <h2 class="counter" data-target="100">0</h2>
+                <p>Placement Rate % <span class="bn">ভিসা ও কর্মসংস্থান হার</span></p>
+            </div>
+            <div class="stat-box">
+                <h2 class="counter" data-target="32">0</h2>
+                <p>Advanced Labs <span class="bn">উন্নত ল্যাব ইউনিট</span></p>
+            </div>
+            <div class="stat-box">
+                <h2 class="counter" data-target="100">0</h2>
+                <p>Safe Hours % <span class="bn">শতভাগ নিরাপদ পরিবেশ</span></p>
+            </div>
+        </div>
+    </div>
+
+    <section class="section-padding" id="global">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">International <span>Deployments</span> <span class="bn">বৈশ্বিক কর্মসংস্থান ও লজিস্টিক সুবিধা</span></h2>
+            </div>
+            <div class="grid-master-3">
+                <div class="cyber-glass-card reveal">
+                    <i class="fa-solid fa-earth-americas"></i>
+                    <h3>Borderless Visas</h3>
+                    <div class="tech-tag">Global Target Grid</div>
+                    <p>We systematically manage 100% processing for European shipyards, Middle Eastern oil rigs, and manufacturing zones without country restrictions.</p>
+                    <p class="bn">ইউরোপিয়ান শিপইয়ার্ড, মধ্যপ্রাচ্যের ওয়েল ফিল্ড রিগ এবং এশিয়ার ভারী শিল্পাঞ্চলে সরকারি ও বেসরকারি আন্তর্জাতিক চ্যানেল এর মাধ্যমে শতভাগ প্রসেসিং গ্যারান্টি।</p>
+                </div>
+                <div class="cyber-glass-card reveal">
+                    <i class="fa-solid fa-hotel"></i>
+                    <h3>Residential Hostels</h3>
+                    <div class="tech-tag">Smart Boarding Systems</div>
+                    <p>High-quality hygienic premium living spaces with 3-course nutritional dining modules, high-speed power back, and structural discipline monitors.</p>
+                    <p class="bn">দূর-দূরান্ত থেকে আসা ইঞ্জিনিয়ারিং ট্রেইনিদের জন্য ৩ বেলা পুষ্টিকর ডায়েট মিল, ২৪ ঘণ্টা ব্যাকআপ পাওয়ার গ্রিড এবং সম্পূর্ণ হাইজেনিক ডরমিটরি আবাসন ব্যবস্থা।</p>
+                </div>
+                <div class="cyber-glass-card reveal">
+                    <i class="fa-solid fa-award"></i>
+                    <h3>ISO Certifications</h3>
+                    <div class="tech-tag">Standardization Matrix</div>
+                    <p>Our curriculum is calibrated with international standards, allowing alumni to pass tricky offshore structural trade tests on their very first attempt.</p>
+                    <p class="bn">গ্লোবাল স্ট্যান্ডার্ড অনুযায়ী প্র্যাকটিক্যাল টেস্ট ফ্রেমওয়ার্ক, যা আন্তর্জাতিক শিপইয়ার্ড ও রিগ প্ল্যাটফর্মের কঠিনতম ক্লাসিফিকেশন সোসাইটি টেস্ট প্রথমবারেই পাসের নিশ্চয়তা দেয়।</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" id="academic" style="background: #050b18;">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Fusion Engineering <span>Modules</span> <span class="bn">অ্যাডভান্সড ওয়েল্ডিং প্রসেস ও পজিশন গাইড</span></h2>
+            </div>
+            <div class="grid-master-2">
+                <div class="cyber-glass-card reveal">
+                    <i class="fa-solid fa-fire-burner"></i>
+                    <h3>SMAW (Shielded Metal Arc)</h3>
+                    <div class="tech-tag">Heavy Duty Structural Arc</div>
+                    <p>Constant-current stick welding process leveraging flux-coated consumable electrodes. Primary foundation for industrial high-tensile steel bonds.</p>
+                    <p class="bn">কনস্ট্যান্ট-কারেন্ট পাওয়ার সোর্স এবং ফ্লাক্স-কোটেড ইলেকট্রোড লিভারেজ পদ্ধতি। এটি ইন্ডাস্ট্রিয়াল মেটাল স্ট্রাকচার এবং পাইপলাইন তৈরির মূল ভিত্তি।</p>
+                </div>
+                <div class="cyber-glass-card reveal">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    <h3>GTAW (Gas Tungsten Arc)</h3>
+                    <div class="tech-tag">High-Precision Inert TIG</div>
+                    <p>Non-consumable pure tungsten electrodes protected by inert Argon gas shield fields. Delivers supreme aesthetic finishing on Stainless Steel (SS).</p>
+                    <p class="bn">নন-কনজিউমেবল টাংস্টেন ইলেকট্রোড এবং আর্গন নিষ্ক্রিয় গ্যাস ফিল্ড প্রোটেকশন মেকানিজম। এটি স্টেইনলেস স্টিল (SS) ও নিখুঁত অ্যালয় জয়েন্টে ব্যবহৃত হয়।</p>
+                </div>
+                <div class="cyber-glass-card reveal">
+                    <i class="fa-solid fa-dharmachakra"></i>
+                    <h3>FCAW & GMAW Matrix</h3>
+                    <div class="tech-tag">Semi-Automatic High Output</div>
+                    <p>Flux-Cored Arc and Metal Inert Gas systems built for automated continuous wire feed setups. Standard requirement for high-speed automated shipyards.</p>
+                    <p class="bn">ফ্লাক্স-কোরড এবং মেটাল ইনার্ট গ্যাস মেকানিজম, যা স্বয়ংক্রিয় কন্টিনিউয়াস ওয়্যার ফিড মেথড ব্যবহার করে মেগা শিপইয়ার্ড প্রোডাকশনে কাজ দ্রুত সম্পন্ন করতে ব্যবহৃত হয়।</p>
+                </div>
+                <div class="cyber-glass-card reveal">
+                    <i class="fa-solid fa-arrows-up-down-left-right"></i>
+                    <h3>5G & 6G Pipe Mechanics</h3>
+                    <div class="tech-tag">Elite Multi-Axis Orientation</div>
+                    <p>Mastering plate alignments (1G-4G) and extreme high-end pipe geometries (5G, 6G, 6GR uphill/downhill configurations) under rigorous physical stress.</p>
+                    <p class="bn">প্লেট এলাইনমেন্ট (1G-4G) থেকে শুরু করে পাইপলাইনের সবচেয়ে জটিল এবং সর্বোচ্চ ডিমান্ডিং পজিশন—৬জি (6G Inclined 45°) এর রিয়েল-টাইম অল-অ্যাক্সিস ম্যানিপুলেশন।</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" id="wps">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Departmental <span>WPS Matrix</span> <span class="bn">ওয়েল্ডিং প্রসিডিউর স্পেসিফিকেশন (মেটেরিয়াল সায়েন্স)</span></h2>
+            </div>
+            
+            <div class="table-module-wrapper reveal">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Material Chemistry / উপাদান</th>
+                            <th>Technical AWS Code / কোড</th>
+                            <th>Operational Parameters / ব্যবহারিক কন্ডিশন</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Carbon Steel (CS) Electrodes</strong><br><span class="bn">কার্বন স্টিল আর্ক ইলেকট্রোড</span></td>
+                            <td>E-6013, E-7018, E-7016</td>
+                            <td>Sizes: 2.5mm, 3.2mm, 4.0mm. High-penetration low-hydrogen properties for structural safety.
+                                <span class="bn">হাই-পেনিট্রেশন স্ট্রাকচারাল জয়েন্ট মেকিং এবং মেকানিক্যাল লোড বিয়ারিং ক্যাপাসিটি।</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>CS Filler Rods (TIG/GTAW)</strong><br><span class="bn">কার্বন স্টিল ফিলার রড</span></td>
+                            <td>ER 70S-6, ER 70S-2</td>
+                            <td>Diameter: 2.4mm. Deoxidizers inside to handle mild surface rust contaminants effectively.
+                                <span class="bn">ডায়ামিটার ২.৪ মিলিমিটার; মেটাল সারফেসের অক্সিডেশন প্রিভেনশন এবং নিখুঁত রুট রানিং।</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Stainless Steel (SS) Fillers</strong><br><span class="bn">স্টেনলেস স্টিল ফিলার রড</span></td>
+                            <td>316L, 308L Heavy-Duty</td>
+                            <td>Exceptional anti-corrosion chemical matrix engineered for nuclear and high-pressure chemical reactors.
+                                <span class="bn">নিউক্লিয়ার প্ল্যান্ট, মেরিন কেমিক্যাল ট্যাংক এবং হাই-স্পেসিফিকেশন রিফাইনারি গ্রেড মেটাল বন্ডিং।</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>TIG Torch Consumables</strong><br><span class="bn">টিগ টর্চ এক্সেসরিজ মডিউল</span></td>
+                            <td>Ceramic Cup, Collet, Tungsten</td>
+                            <td>Gas Lens setups, Long/Medium Back Cups, 2.4mm Pure/Thoriated sharp-point Tungsten configuration.
+                                <span class="bn">গ্যাস লেন্স প্রোটেকশন, সিরামিক কাপ (সাইড গ্যাস ফ্লো কন্ট্রোল) এবং টাংস্টেন সুইফট শার্পনার এলাইনমেন্ট।</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" id="metrology" style="background: #040914;">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Advanced <span>Metrology Lab</span> <span class="bn">হাই-প্রিসিশন মেজারমেন্ট ও কোয়ালিটি কন্ট্রোল ল্যাব</span></h2>
+            </div>
+            <div class="grid-master-3">
+                <div class="cyber-glass-card reveal">
+                    <i class="fa-solid fa-compass"></i>
+                    <h3>Vernier & Micrometer</h3>
+                    <p>Sub-millimeter dimension auditing for root gaps, bevel angles, and precise reinforcement metrics.</p>
+                    <p class="bn">রুটের ভেভেল অ্যাঙ্গেল গ্যাপ এবং রিইনফোর্সমেন্ট মেটাল লেয়ারের নিখুঁত সাব-মিলিমিটার ফ্র্যাকশন অডিটিং গাইডলাইন।</p>
+                </div>
+                <div class="cyber-glass-card reveal">
+                    <i class="fa-solid fa-bezier-curve"></i>
+                    <h3>Angle Locators & Gauges</h3>
+                    <p>Laser alignment systems and digital bevel protractors to confirm zero deviation across extensive piping pipelines.</p>
+                    <p class="bn">লেজার গাইডেড লেভেলার এবং ডিজিটাল প্রটেক্টর গেজ টুলস, যা মেগা পাইপলাইনের জয়েন্ট এলাইনমেন্ট বিচ্যুতি শূন্যে নামিয়ে আনে।</p>
+                </div>
+                <div class="cyber-glass-card reveal">
+                    <i class="fa-solid fa-gauge-high"></i>
+                    <h3>Pressure & Vacuum Check</h3>
+                    <p>Hydrostatic testing devices, pressure gauge diagnostics, and specialized regulators to monitor stable shield gas delivery.</p>
+                    <p class="bn">হাইড্রোস্ট্যাটিক ক্র্যাক ডিটেকশন প্রসেস, প্রেসার গেজ ডায়াগনস্টিকস এবং আর্গন গ্যাস স্টেবিলাইজার ভালভ টিউনিং ল্যাব।</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding hse-shield-section" id="hse">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">HSE Cyber-Shield <span>Protocol</span> <span class="bn">স্বাস্থ্য, পেশাগত নিরাপত্তা ও পরিবেশ প্রোটোকল</span></h2>
+            </div>
+            <div class="grid-master-3" style="grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));">
+                <div class="hse-protocol-card reveal">
+                    <div class="hse-icon-shield"><i class="fa-solid fa-eye-slash"></i></div>
+                    <div>
+                        <h4 style="color:#ff4757;">Optoelectronic Eye Defend</h4>
+                        <p style="font-size:0.9rem; color:var(--text-sub);">Mandatory usage of Shade 10-14 auto-darkening digital shields to prevent retina photokeratitis damage from dangerous UV/IR sparks.</p>
+                        <p class="bn">তীব্র অতিবেগুনি ও অবলোহিত রশ্মি (UV/IR) থেকে চোখের রেটিনা সুরক্ষায় অটো-ডার্কেনিং ডিজিটাল হেলমেট ফিল্টার শেড (১০-১৪) ব্যবহার বাধ্যতামূলক।</p>
+                    </div>
+                </div>
+                <div class="hse-protocol-card reveal">
+                    <div class="hse-icon-shield" style="background:rgba(46, 213, 115, 0.1); color:#2ed573;"><i class="fa-solid fa-mask-ventilator"></i></div>
+                    <div>
+                        <h4 style="color:#2ed573;">Fume Capture Exhausts</h4>
+                        <p style="font-size:0.9rem; color:var(--text-sub);">Localized continuous high-volume extraction units to eliminate hazardous airborne manganese oxide, hexavalent chromium particulates.</p>
+                        <p class="bn">বদ্ধ ল্যাবে কাজের সময় ম্যাঙ্গানিজ ও ক্রোমিয়াম অক্সাইডের বিষাক্ত কেমিক্যাল ধোঁয়া ফুসফুসে যাওয়া রোধ করতে ভ্যাকুয়াম এক্সজস্ট সিস্টেমের ব্যবহার।</p>
+                    </div>
+                </div>
+                <div class="hse-protocol-card reveal">
+                    <div class="hse-icon-shield" style="background:rgba(255, 165, 2, 0.1); color:#ffa502;"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                    <div>
+                        <h4 style="color:#ffa502;">Amperage Isolation Grid</h4>
+                        <p style="font-size:0.9rem; color:var(--text-sub);">Zero tolerance on moisture conditions. Rigorous insulated earth clamp matching and routine terminal decay auditing parameters.</p>
+                        <p class="bn">আর্দ্রতা বা ভেজা জায়গায় হাই-অ্যাম্পিয়ার সার্কিট রিস্ক এভয়েডেন্স; ইনসুলেটেড ক্যাবল জয়েন্ট মেকিং এবং মেটাল আর্থিং ক্লাম্প নিয়মিত টেস্টিং সিস্টেম।</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" style="background: #03060f;">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Knowledge Base <span>& FAQ</span> <span class="bn">জিজ্ঞাসিত প্রশ্নাবলী এবং জরুরি তথ্য ভান্ডার</span></h2>
+            </div>
+            
+            <div class="accordion-wrapper reveal">
+                <div class="accordion-item">
+                    <div class="accordion-header">Q1: What are the primary global industries hiring CMT alumni? <span class="bn">আমাদের শিক্ষার্থীরা কোন কোন সেক্টরে কাজ পায়?</span> <i class="fa-solid fa-chevron-down"></i></div>
+                    <div class="accordion-content">
+                        Our alumni operate inside high-tier European shipyards, oil & gas trans-continental pipeline networks, structural construction mega projects, and offshore container production hubs worldwide.
+                        <span class="bn">আন্তর্জাতিক শিপইয়ার্ড, তেল ও গ্যাস উত্তোলক রিগ সাইট, ওভারসিজ কন্টেইনার ম্যানুফ্যাকচারিং হাব এবং মেগা পাওয়ার গ্রিড প্রজেক্ট সমূহে আমাদের দক্ষ ওয়েল্ডারদের স্পেশাল ডিমান্ড রয়েছে।</span>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">Q2: Why is the 6G position considered the highest-tier credential? <span class="bn">৬জি (6G) পজিশন কেন সবচেয়ে ডিমান্ডিং?</span> <i class="fa-solid fa-chevron-down"></i></div>
+                    <div class="accordion-content">
+                        The 6G position involves a pipe fixed at a sharp 45-degree angle. It tests all-position capabilities (flat, vertical, horizontal, overhead) simultaneously. Holding this cert verifies you can weld under any physical orientation.
+                        <span class="bn">৬জি পজিশনে একটি পাইপকে ৪৫ ডিগ্রি কোণে স্থির রেখে চারপাশের অল-অ্যাক্সিস ওরিয়েন্টেশন কভার করতে হয়। এই একটিমাত্র সার্টিফিকেট থাকলে বিশ্বের যেকোনো দেশের টেস্ট ক্লিয়ার করা সহজ হয়।</span>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">Q3: How does CMT support visa processing logistics? <span class="bn">ভিসা প্রসেসিং সংক্রান্ত জটিলতায় CMT কীভাবে সহায়তা করে?</span> <i class="fa-solid fa-chevron-down"></i></div>
+                    <div class="accordion-content">
+                        We host a dedicated in-house global deployment cell that bridges multinational engineering firms with qualified students directly, preparing document verifications and handling corporate trade bookings smoothly.
+                        <span class="bn">আমাদের নিজস্ব ডেডিকেটেড ফরেন উইং সরাসরি বিভিন্ন মাল্টিন্যাশনাল কনস্ট্রাকশন এজেন্সির সাথে কানেক্টেড। ফলে ট্রেড টেস্ট বুকিং থেকে শুরু করে মেডিকেল ও এম্বাসি পেপারস প্রসেসিং দ্রুত ও সিকিউরডভাবে সম্পন্ন হয়।</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" id="apply" style="background: radial-gradient(circle at bottom, #0c1630 0%, var(--bg-deep) 100%);">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Admission <span>Gateway</span> <span class="bn">অনলাইন ডিজিটাল ভর্তি ও রেজিস্ট্রেশন পোর্টাল</span></h2>
+            </div>
+            
+            <div class="form-container reveal">
+                <form id="cyberAdmissionForm" onsubmit="handleFormSubmit(event)">
+                    <div class="form-grid">
+                        <div class="input-group">
+                            <label for="traineeName">Full Applicant Name / আবেদনকারীর নাম</label>
+                            <input type="text" id="traineeName" placeholder="Enter Full Name" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="contactPhone">Active Mobile Network / ফোন নম্বর</label>
+                            <input type="tel" id="contactPhone" placeholder="+880 1XXX-XXXXXX" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="selectModule">Target Tech Module / নির্দিষ্ট কোর্স মডিউল</label>
+                            <select id="selectModule" required>
+                                <option value="">-- Choose Specialization Process --</option>
+                                <option value="smaw">SMAW / Arc Structural System (1G-4G)</option>
+                                <option value="gtaw">GTAW / TIG Stainless Precision (1G-6G)</option>
+                                <option value="combo">Elite Industry Combo (SMAW + GTAW 6G Pipe)</option>
+                                <option value="fcaw">FCAW Automated Production Module</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label for="boardingNeed">Residential Accommodations / হোস্টেল সুবিধা</label>
+                            <select id="boardingNeed" required>
+                                <option value="yes">Required / হোস্টেল সিট সহ থাকা-খাওয়া প্রয়োজন</option>
+                                <option value="no">Not Required / শুধু ডে-স্কলার ট্রেনিং মডিউল</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div style="text-align: center;">
+                        <button type="submit" class="action-cyber-btn"><i class="fa-solid fa-server"></i> Submit Application / ডাটাবেজে সাবমিট করুন</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid-structure">
+            <div class="footer-column">
+                <h4><i class="fa-solid fa-bolt-lightning" style="color:var(--plasma-orange);"></i> CMT Engineering</h4>
+                <p>Centre for Marine Training is a recognized multi-national technical incubator for high-amperage alloy fusion arts. Transitioning raw talent into specialized international workforce assets.</p>
+                <p class="bn">সেন্টার ফর মেরিন ট্রেনিং (CMT) বিশ্বমানের ওয়েল্ডিং ইঞ্জিনিয়ারিং ও মেরিন প্র্যাকটিক্যাল রিসার্চ একাডেমি। আমাদের লক্ষ্য বৈশ্বিক শ্রমবাজারে আপনার সর্বোচ্চ টেকনিক্যাল ভ্যালু নিশ্চিত করা।</p>
+            </div>
+            <div class="footer-column">
+                <h4>Quick Targets</h4>
+                <ul>
+                    <li><a href="#home">Home Interface</a></li>
+                    <li><a href="#global">Deployments</a></li>
+                    <li><a href="#academic">Core Modules</a></li>
+                    <li><a href="#wps">WPS Specifications</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Support & Law</h4>
+                <ul>
+                    <li><a href="#hse">HSE Protocols</a></li>
+                    <li><a href="#metrology">Metrology Lab</a></li>
+                    <li><a href="#apply">Online Apply</a></li>
+                    <li><a href="#faq">Knowledge Base</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Communications</h4>
+                <p style="font-size: 0.95rem; margin-bottom: 10px;"><i class="fa-solid fa-location-dot" style="color:var(--plasma-orange); margin-right:8px;"></i> Dhaka-Sylhet Highway, Bhulta, Rupganj, Narayanganj, Bangladesh.</p>
+                <p style="font-size: 0.95rem; margin-bottom: 10px;"><i class="fa-solid fa-phone" style="color:var(--plasma-orange); margin-right:8px;"></i> +880 1700-000000 / +880 1900-000000</p>
+                <p style="font-size: 0.95rem;"><i class="fa-solid fa-envelope" style="color:var(--plasma-orange); margin-right:8px;"></i> info@cmtwelding.com</p>
+            </div>
+        </div>
+
+        <div class="master-dev-credit-wrapper">
+            <a href="https://jakariya41jr.xyz" target="_blank" class="master-dev-glow-btn reveal">
+                <i class="fa-solid fa-laptop-code"></i>
+                <div class="dev-text-container">
+                    <p>System Architect & Full-Stack Developer</p>
+                    <h5>Md Jakariya Hasan</h5>
+                    <span class="bn">সিস্টেম আর্কিটেক্ট ও চিফ ইঞ্জিনিয়ারিং ডেভেলপার | jakariya41jr.xyz</span>
+                </div>
+            </a>
+            <p style="color: var(--text-sub); font-size:0.85rem; margin-top:25px; letter-spacing:1px;">&copy; 2026 Centre for Marine Training. Project Code Architecture Inspected. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Immersive Responsive Sliding Menu Controls
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+        const menuIcon = document.getElementById('menuIcon');
+        const targetNavLinks = navMenu.querySelectorAll('a');
+
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('open');
+            if (navMenu.classList.contains('open')) {
+                menuIcon.classList.remove('fa-bars-staggered');
+                menuIcon.classList.add('fa-xmark');
+                menuToggle.style.borderColor = 'var(--plasma-orange)';
+            } else {
+                menuIcon.classList.remove('fa-xmark');
+                menuIcon.classList.add('fa-bars-staggered');
+                menuToggle.style.borderColor = 'var(--cyber-blue)';
+            }
+        });
+
+        targetNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('open');
+                menuIcon.classList.remove('fa-xmark');
+                menuIcon.classList.add('fa-bars-staggered');
+                menuToggle.style.borderColor = 'var(--cyber-blue)';
+            });
+        });
+
+        // Header Scrolling Dynamic Visual Glow Adjuster
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('mainHeader');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Interactive Accordion Controller Matrix
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const item = header.parentElement;
+                item.classList.toggle('active');
+            });
+        });
+
+        // Scroll Intersection Reveal Monitor System
+        function revealElementsOnScroll() {
+            const reveals = document.querySelectorAll(".reveal");
+            const windowHeight = window.innerHeight;
+            reveals.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisibleOffset = 80;
+                if (elementTop < windowHeight - elementVisibleOffset) {
+                    element.classList.add("active");
+                }
+            });
+        }
+        window.addEventListener("scroll", revealElementsOnScroll);
+        revealElementsOnScroll(); // Execution baseline trigger on immediate payload load
+
+        // High-Amperage Metrology Counters Engine
+        const counters = document.querySelectorAll('.counter');
+        const speed = 150; 
+
+        const startCounters = () => {
+            counters.forEach(counter => {
+                const updateCount = () => {
+                    const target = +counter.getAttribute('data-target');
+                    const count = +counter.innerText;
+                    const inc = Math.ceil(target / speed);
+
+                    if (count < target) {
+                        counter.innerText = count + inc;
+                        setTimeout(updateCount, 20);
+                    } else {
+                        counter.innerText = target + (counter.parentElement.innerText.includes('%') ? '%' : '+');
+                    }
+                };
+                updateCount();
+            });
+        };
+
+        // Trigger counters when stats banner enters view
+        let counterTriggered = false;
+        window.addEventListener('scroll', () => {
+            const statsBanner = document.querySelector('.stats-banner');
+            const position = statsBanner.getBoundingClientRect();
+            if(position.top < window.innerHeight && !counterTriggered) {
+                startCounters();
+                counterTriggered = true;
+            }
+        });
+
+        // Immersive Industrial Particle Flash Canvas Engine
+        const canvas = document.getElementById('sparkCanvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        let structuralSparksArray = [];
+
+        class WeldingSparkParticle {
+            constructor() {
+                this.x = canvas.width / 2 + (Math.random() - 0.5) * 40;
+                this.y = canvas.height * 0.45 + (Math.random() - 0.5) * 40;
+                this.size = Math.random() * 3.5 + 1.5;
+                this.speedX = (Math.random() - 0.5) * 12;
+                this.speedY = (Math.random() - 0.5) * 12 - 3; // Upward initial vector bias
+                this.gravity = 0.18;
+                this.color = Math.random() > 0.4 ? 'rgba(0, 243, 255, 1)' : 'rgba(255, 107, 0, 1)';
+                this.alpha = 1;
+                this.decay = Math.random() * 0.015 + 0.008;
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.speedY += this.gravity;
+                this.y += this.speedY;
+                this.alpha -= this.decay;
+            }
+
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = this.alpha;
+                ctx.shadowBlur = 15;
+                ctx.shadowColor = this.color;
+                ctx.fillStyle = '#ffffff';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+
+        function handleSparksEngine() {
+            if (structuralSparksArray.length < 90) {
+                structuralSparksArray.push(new WeldingSparkParticle());
+            }
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < structuralSparksArray.length; i++) {
+                structuralSparksArray[i].update();
+                structuralSparksArray[i].draw();
+                if (structuralSparksArray[i].alpha <= 0) {
+                    structuralSparksArray.splice(i, 1);
+                    i--;
+                }
+            }
+            requestAnimationFrame(handleSparksEngine);
+        }
+        handleSparksEngine();
+
+        // Safe Application Submission Simulation Gate
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            alert("🔒 [Secured Data Transmit] Cyber registration payload compiled successfully! CMT Admissions department will contact you instantly via phone.\n\n[ডাটাবেজ ট্রান্সমিট] আপনার ডিজিটাল আবেদনটি সফলভাবে গৃহীত হয়েছে। CMT অ্যাডমিশন টিম দ্রুত আপনার সাথে যোগাযোগ করবে।");
+            document.getElementById('cyberAdmissionForm').reset();
+        }
+    </script>
+</body>
+</html>
